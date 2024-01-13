@@ -21,7 +21,7 @@ from authentik.core.models import (
     UserSourceConnection,
 )
 from authentik.enterprise.providers.rac.models import ConnectionToken
-from authentik.events.models import Event, EventAction, Notification
+from authentik.events.models import Event, EventAction, Notification, SystemTask
 from authentik.events.utils import model_to_dict
 from authentik.flows.models import FlowToken, Stage
 from authentik.lib.sentry import before_send
@@ -56,6 +56,7 @@ IGNORED_MODELS = (
     SCIMGroup,
     Reputation,
     ConnectionToken,
+    SystemTask,
 )
 
 
