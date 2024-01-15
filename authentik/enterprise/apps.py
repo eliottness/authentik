@@ -1,4 +1,6 @@
 """Enterprise app config"""
+from django.conf import settings
+
 from authentik.blueprints.apps import ManagedAppConfig
 
 
@@ -17,3 +19,9 @@ class AuthentikEnterpriseConfig(EnterpriseConfig):
     def reconcile_load_enterprise_signals(self):
         """Load enterprise signals"""
         self.import_module("authentik.enterprise.signals")
+
+    def reconcile_install_middleware(self):
+        """Install enterprise audit middleware"""
+        orig_import = "authentik.events.middleware.AuditMiddleware"
+        new_import = "authentik.enterprise.middleware.EnterpriseAuditMiddleware"
+        settings.MIDDLEWARE = [new_import if x == orig_import else x for x in settings.MIDDLEWARE]
