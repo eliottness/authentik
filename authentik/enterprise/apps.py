@@ -21,10 +21,12 @@ class AuthentikEnterpriseConfig(EnterpriseConfig):
         self.import_module("authentik.enterprise.signals")
 
     def enabled(self):
+        """Return true if enterprise is enabled and valid"""
         return self.check_enabled()
 
     @lru_cache()
     def check_enabled(self):
+        """Actual enterprise check, cached"""
         from authentik.enterprise.models import LicenseKey
 
         return LicenseKey.get_total().is_valid()
