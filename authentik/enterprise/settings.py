@@ -12,5 +12,6 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 INSTALLED_APPS = [
+    "authentik.enterprise.audit",
     "authentik.enterprise.providers.rac",
 ]
